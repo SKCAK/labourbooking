@@ -31,10 +31,10 @@ def Worker_login():
 			if str(data[1])==str(name) and str(data[6])==str(passw):
 				return "Welcome "+data[1]
 			else:
-				return render_template("errot.html",
+				return render_template("error.html",
 					title="Error",msg="Wrong Username or Password")
 		else:
-			return render_template("errot.html",
+			return render_template("error.html",
 				title="Error",msg="Username Dose Not Exist")
 
 	return render_template("login.html",title="Worker Login")
@@ -49,7 +49,7 @@ def Admin_login():
 		if name == 'admin' and passw == 'admin':
 			return "Welcome"
 		else:
-			return render_template("errot.html",
+			return render_template("error.html",
 				title="Error",msg="Wrong Username or Password")
 	return render_template("login.html",title="Admin Login")
 
@@ -80,10 +80,10 @@ def worker_register():
 				con.commit()
 				return redirect(url_for("Worker_login"))
 			else:
-				return render_template("errot.html",
+				return render_template("error.html",
 					title="Error",msg="Password Not Maching")
 		else:
-			return render_template("errot.html",
+			return render_template("error.html",
 				title="Error",msg="Username Already Exists")
 	return render_template("worker_register.html",title="Worker Register")
 
@@ -106,14 +106,14 @@ def wroker_password_reset():
 				val = (passw1,username)
 				cur.execute(qur,val)
 				con.commit()
-				return render_template("sucess.html",
-					title="Password Reset",msg="Password has been sucessfully changed",
+				return render_template("success.html",
+					title="Password Reset",msg="Password has been successfully changed",
 					link="/Worker/login",value="Login")
 			else:
-				return render_template("errot.html",
+				return render_template("error.html",
 					title="Password",msg="Password not maching")
 		else:
-			return render_template("errot.html",
+			return render_template("error.html",
 				title="Username Error",msg="Username Dose Not Exist")
 
 	return render_template("password_change.html",title="Password Reset")
