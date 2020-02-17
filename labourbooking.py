@@ -3,6 +3,8 @@ import sqlite3
 import pandas as pd
  
 app = Flask(__name__)
+
+name = ''
  
  
 @app.route("/home")
@@ -10,8 +12,9 @@ app = Flask(__name__)
 def Home():
     return render_template("home.html",title="Welcome")
  
-@app.route("/Worker/login",methods=['Get','POST'])
+@app.route("/Worker/login",methods=['GET','POST'])
 def Worker_login():
+	global name
 	con = sqlite3.connect("database.db")
 	cur = con.cursor()
 	table = cur.execute("select * from worker")
@@ -29,7 +32,7 @@ def Worker_login():
 			print(data)
 			print(name,passw,data[1],data[6])
 			if str(data[1])==str(name) and str(data[6])==str(passw):
-				return "Welcome "+data[1]
+				return redirect(url_for("worker_main"))
 			else:
 				return render_template("error.html",
 					title="Error",msg="Wrong Username or Password")
@@ -38,20 +41,6 @@ def Worker_login():
 				title="Error",msg="Username Dose Not Exist")
 
 	return render_template("login.html",title="Worker Login")
- 
-@app.route("/admin/login",methods=['Get','POST'])
-def Admin_login():
-
-	if request.method == "POST":
-		name = request.form['wname']
-		passw = request.form['pass']
-
-		if name == 'admin' and passw == 'admin':
-			return "Welcome"
-		else:
-			return render_template("error.html",
-				title="Error",msg="Wrong Username or Password")
-	return render_template("login.html",title="Admin Login")
 
 @app.route("/Worker/register",methods=['GET','POST'])
 def worker_register():
@@ -118,6 +107,28 @@ def wroker_password_reset():
 
 	return render_template("password_change.html",title="Password Reset")
 
+@app.route("/Worker/main",methods=['GET','POST'])
+def worker_main():
+	global name
+	return render_template("Worker_main.html",title="Worker Main",name=name)
+
+@app.route("/admin/login",methods=['GET','POST'])
+def Admin_login():
+
+	if request.method == "POST":
+		name = request.form['wname']
+		passw = request.form['pass']
+
+		if name == 'admin' and passw == 'admin':
+			return redirect(url_for("admin_main"))
+		else:
+			return render_template("error.html",
+				title="Error",msg="Wrong Username or Password")
+	return render_template("login.html",title="Admin Login")
+
+@app.route("/Admin/main",methods=['GET','POST'])
+def admin_main():
+	return render_template("Admin_main.html",title="Admin Main")
 
  
 if __name__ == "__main__":
