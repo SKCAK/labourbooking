@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block head %}
+<h1>{{title}}</h1>
+<form method="post">
+<input type="text" name="uname" placeholder="Username" required="required"><br>
+<input type="email" name="mail" placeholder="Email" required="required"><br>
+<input type="text" name="pno" placeholder="Phone Number" required="required"><br>
+<input type="text" name="domain" placeholder="Profession" required="required"><br>
+<input type="text" name="exp" placeholder="Experience" required="required"><br>
+<input type="password" name="pass1" placeholder="Password" required="required"><br>
+<input type="password" name="pass2" placeholder="Re-Enter Password" required="required"><br><br>
+<input type="submit" value="Submit">
+<a href="/Worker/login"><input type="button" value="Login"></a>
+</form>
+{%endblock head%}

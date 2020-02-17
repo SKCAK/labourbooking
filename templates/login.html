@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block head %}
+<h1>{{title}}</h1>
+<form method="post">
+<input type="text" name="wname" placeholder="Username"><br>
+<input type="password" name="pass" placeholder="Password"><br><br>
+<input type="submit" value="Submit">
+
+{% if title=="Worker Login"%}
+<a href="/Worker/register"><input type="button" value="Register"></a><br><br>
+<a href="/Worker/password/reset" style="color:#FF0000;">Forgot Password ?</a>
+{%endif%}<br>
+</form>
+
+{%endblock head%}
