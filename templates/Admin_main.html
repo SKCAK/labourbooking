@@ -1,6 +1,90 @@
 {%extends "layout.html"%}
 {%block head%}
 
-<h1>Welcom Admin</h1>
+<style type="text/css">
+.myButtons {
+	box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	background:linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
+	background-color:#3d94f6;
+	border-radius:42px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Times New Roman;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #1570cd;
+}
+.myButtons:hover {
+	background:linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
+	background-color:#1e62d0;
+}
+.myButtons:active {
+	position:absolute;
+	right:0;
+}
+.brk-btn {
+  position: relative;
+  background: none;
+  color: orange;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 0.2em solid tomato;
+  padding: 0.5em 1em;
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 10%;
+    background: #222;
+    height: 0.3em;
+    right: 20%;
+    top: -0.21em;
+    transform: skewX(-45deg);
+    -webkit-transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+    transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+  }
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 10%;
+    background: #222;
+    height: 0.3em;
+    left: 20%;
+    bottom: -0.25em;
+    transform: skewX(45deg);
+    -webkit-transition: all 0.45 cubic-bezier(0.86, 0, 0.07, 1);
+    transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+  }
+  &:hover {
+    &::before {
+      right: 80%;
+    }
+    &::after {
+      left: 80%;
+    }
+  }
+}
+
+
+</style>
+
+<a href="/" class="myButtons" style="position: absolute; right: 0;">Logout<a><br>
+
+<h1>Welcom Admin</h1><br><br>
+
+<a href="Admin/Worker/List" class="brk-btn" style='margin-right:16px'>
+  Empolyee List
+</a><tb>
+<a href="Admin/Book" class="brk-btn" style='margin-right:16px'>
+  Book Worker
+</a>
+<a href="Admin/Payment" class="brk-btn" style='margin-right:16px'>
+  Payment
+</a>
+
 
 {%endblock head%}
