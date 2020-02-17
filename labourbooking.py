@@ -110,7 +110,22 @@ def wroker_password_reset():
 @app.route("/Worker/main",methods=['GET','POST'])
 def worker_main():
 	global name
-	return render_template("Worker_main.html",title="Worker Main",name=name)
+	con = sqlite3.connect("database.db")
+	cur = con.cursor()
+	table = cur.execute("select * from worker")
+	df = pd.DataFrame(table,
+		columns=('Id','Username','Mail','Pno','Domain','Exp','Pass'))
+	user = list(df['Username'])
+	username = list(df['Username'])
+	index = username.index(name)
+	data = list(df.loc[index])
+	
+	return render_template("Worker_main.html",
+		title="Worker Main",name=name,data=data)
+
+@app.route("/Worker/update",methods=['GET','POST'])
+def worker_update():
+	return "Update"
 
 @app.route("/admin/login",methods=['GET','POST'])
 def Admin_login():

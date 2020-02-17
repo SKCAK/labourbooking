@@ -5,9 +5,17 @@
 <form method="post">
 <input type="text" name="uname" placeholder="Username" required="required"><br>
 <input type="email" name="mail" placeholder="Email" required="required"><br>
-<input type="text" name="pno" placeholder="Phone Number" required="required"><br>
-<input type="text" name="domain" placeholder="Profession" required="required"><br>
-<input type="text" name="exp" placeholder="Experience" required="required"><br>
+<input type="text" name="pno" placeholder="Phone Number" pattern="[0-9]{10}" minlength="10" maxlength="10" required="required"><br>
+<label for="cars"><b>Select Your Domain:</b></label>
+<select name="domain" style="width:60px;" required>
+		<option></option>
+  		<option value="Plumber">Plumber</option>
+  		<option value="Carpenter">Carpenter</option>
+  		<option value="Electrician">Electrician</option>
+  		<option value="Gardener">Gardener</option>
+	</select><br>
+<label for="cars"><b>Year of Experaince:</b></label>
+<input type="number" name="exp" placeholder="Experience" style="width:60px;" min = "1" max='20' maxlength="2" size="2" required="required"><br>
 <input type="password" name="pass1" placeholder="Password" required="required"><br>
 <input type="password" name="pass2" placeholder="Re-Enter Password" required="required"><br><br>
 <input type="submit" value="Submit">
